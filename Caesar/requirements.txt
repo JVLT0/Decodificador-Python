@@ -1,0 +1,21 @@
+# Core Libraries
+gradio==3.50.2
+lark==1.2.2
+transformers==4.41.2
+torch>=2.0.0
+
+# Support Libraries
+regex==2024.11.6
+requests==2.32.3
+unicodedata2==15.1.0
+numpy>=1.24.0
+tqdm>=4.66.0
+
+# Hugging Face Ecosystem
+tokenizers>=0.19.1
+sentencepiece>=0.2.0
+protobuf>=3.20.0
+
+# Optional (for GPU support)
+# torchaudio>=2.0.0
+# torchvision>=2.0.0

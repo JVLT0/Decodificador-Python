@@ -1,78 +1,107 @@
-# 🔐 Descriptografia de Cifras Clássicas com IA
-Este projeto é uma ferramenta de descriptografia de textos cifrados, suportando múltiplas cifras clássicas: César, Atbash e Vigenère. Utiliza técnicas de Gramática Livre de Contexto (GLC) e Processamento de Linguagem Natural (NLP) para validar e identificar automaticamente textos plausíveis em português. A interface gráfica é construída com Gradio, permitindo uma interação simples e intuitiva.
+# 🔐 Decriptador Híbrido de Cifra de César
+
+Este projeto combina **abordagens formais (GLC + Autômatos) e modernas (BERT)** para criar um sistema avançado de descriptografia, atendendo tanto aos requisitos acadêmicos quanto às melhores práticas de PLN.
+
+
+## 🌟 Destaques da Versão
+- ✅ **Validação formal** com Gramática Livre de Contexto (GLC) e Autômatos
+- 🤖 **Validação semântica** com modelo BERT multilingual
+- ⚖️ **Sistema híbrido** de pontuação ponderada
+- 🖥️ **Interface intuitiva** com Gradio
+- ⚡ **Processamento otimizado** com PyTorch
 
 ## 📁 Estrutura do Projeto
-
 ```
-Crypto/
-├── core/
-│   ├── __init__.py
-│   ├── parser.py       # GLC e validação com spaCy
-│   └── utils.py        # Pré-processamento de texto
-├── ciphers/
-│   ├── __init__.py
-│   ├── caesar.py       # Cifra de César
-│   ├── atbash.py       # Cifra de Atbash
-│   └── vigenere.py     # Cifra de Vigenère
-├── interface/
-│   ├── __init__.py
-│   └── gradio_ui.py    # Interface Gradio
-├── requirements.txt
-└── README.md
+Descriptografia-Python
+├──Caesar/ 
+    ├── app.py # Script principal com interface Gradio 
+    ├── portuguese_words.txt # Lista de palavras válidas em português
+    └──requirements.txt # Dependências do projeto
 ```
 
----
+## 🛠️ Tecnologias Utilizadas
+| Tecnologia | Finalidade |
+|------------|------------|
+| Python 3.11+ | Linguagem principal |
+| Lark | Implementação de GLC e autômatos |
+| Transformers | Modelo BERT multilingual |
+| PyTorch | Inferência do modelo |
+| Gradio | Interface web interativa |
 
-## 🧠 Funcionalidades
-Descriptografia automática para as cifras de César, Atbash e Vigenère.
+## ⚙️ Como Funciona
+1. Testa todos os 25 shifts possíveis
+2. Para cada versão decriptada:
+   - ✅ Valida estrutura com GLC
+   - 🧠 Calcula probabilidade com BERT
+   - 📖 Verifica palavras no dicionário
+3. Combina os scores com pesos:
+   - 40% GLC (estrutura)
+   - 30% BERT (semântica)
+   - 30% Dicionário (léxico)
+4. Retorna a versão com maior pontuação
 
-- Validação de texto utilizando:
-- GLC com a biblioteca Lark para verificar a estrutura gramatical.
-- NLP com spaCy para identificar palavras válidas em português.
-- Interface gráfica interativa com Gradio.
-- Modularização do código para facilitar manutenção e expansão.
+## 🚀 Instalação
 
-## 🚀 Tecnologias Utilizadas
-1. Python 3.11
-2. Lark – Parsing de gramáticas.
-3. spaCy – Processamento de linguagem natural.
-4. Gradio – Interface gráfica para aplicações de ML.
-
-## ⚙️ Instalação
-Clone o repositório:
-
+1. Clone o repositório:
 ```
 git clone https://github.com/JVLT0/Descriptografia-Python.git
-cd Descriptografia-Python
 ```
 
-- Crie um ambiente virtual (opcional, mas recomendado):
+2. Entre na pasta principal:
+```
+cd Caesar
+```
 
+3. Crie um ambiente virtual (opcional, mas recomendado):
 ```
 python -m venv venv
 source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
+venv\Scripts\activate    # Windows
 ```
 
-### Instale as dependências:
-
+4. Instale as dependências:
 ```
 pip install -r requirements.txt
-python -m spacy download pt_core_news_sm
 ```
-
-### Execute a aplicação:
-
+5. Execute a aplicação:
 ```
 python app.py
 ```
 
-## 📝 Exemplo de Uso
-- Abra a interface gráfica que será lançada automaticamente no navegador.
-- Insira o texto cifrado.
-- Selecione o método de criptografia utilizado (César, Atbash ou Vigenère).
-- Para Vigenère, forneça a chave utilizada na cifragem.
-- Clique em "Submit" para ver o texto descriptografado.
+## 🧪 Exemplo Prático
+- Entrada:
+```
+D oljhlud udsrvd pduurp vdowrx vreuh r fdfkruur fdqvdgr
+```
 
-# 📄 Licença
-Este projeto está licenciado sob a MIT License.
+- Saída:
+```
+A ligeira raposa marrom saltou sobre o cachorro cansado
+
+Shift: 3
+Score: 0.92
+```
+
+## 📊 Comparativo de Versões
+| Features | V1.0 | V2 |
+|------------|------------|------------|
+|Validação GLC|✓|✓|
+|Modelo BERT|-|✓|
+|Sistema Híbrido|-|✓|
+|Peso Ajustável|-|✓|
+|Requisitos RAM|~500MB|~2GB|
+
+## 📝 Observações Técnicas
+- Primeira execução baixa o modelo BERT (~700MB)
+- Gramática customizável no arquivo principal
+- Pesos ajustáveis no código-fonte
+- Compatível com CPU (GPU recomendada)
+- Esta é apenas a versão 2.0. Cifras adicionais serão adicionadas futuramente.
+
+## 📄 Licença
+- Este projeto está licenciado sob a MIT License
+```
+Nota Pedagógica: Esta versão mantém todos os componentes acadêmicos exigidos
+(GLC e autômatos) enquanto incorpora técnicas modernas de PLN, servindo como 
+ponte entre teoria formal e aplicações práticas.
+```
