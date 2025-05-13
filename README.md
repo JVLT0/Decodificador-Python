@@ -17,18 +17,18 @@ Este projeto combina **abordagens formais (GLC + Autômatos) e modernas (BERT + 
 ```
 Crypto/
 │
-├── main.py                  # Ponto de entrada principal
-├── requirements.txt         # Dependências atualizadas
+├── main.py                      # Ponto de entrada principal
+├── requirements.txt             # Dependências atualizadas
 │
 ├── core/
 │   ├── _init_.py
-│   ├── encryption/          # Nova pasta para algoritmos de criptografia
+│   ├── encryption/              # Nova pasta para algoritmos de criptografia
 │   │   ├── _init_.py
-│   │   ├── base.py          # Classe base abstrata
-│   │   ├── caesar.py        # Implementação Caesar
-│   │   └──  vigenere.py     # Nova implementação
+│   │   ├── base.py              # Classe base abstrata
+│   │   ├── caesar.py            # Implementação Caesar
+│   │   └──  vigenere.py         # Nova implementação
 │   │
-│   ├── decryption.py        # Modificado para multi-algoritmos
+│   ├── decryption.py            # Modificado para multi-algoritmos
 │   ├── validation.py      
 │   └── correction.py      
 │
@@ -38,12 +38,11 @@ Crypto/
 │   └── visualization.py   
 │
 ├── data/
-│   ├── portuguese_words.txt
-│   └── english_words.txt    # Novo dicionário
+│   └── portuguese_words.txt    # Novo dicionário
 │
 └── interface/
     ├── _init_.py
-    └── gradio_ui.py         # Interface atualizada
+    └── gradio_ui.py            # Interface atualizada
 ```
 ## 🛠️ Tecnologias Utilizadas
 | Tecnologia | Finalidade |
