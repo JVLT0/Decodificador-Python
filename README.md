@@ -1,6 +1,6 @@
-# 🔐 Decriptador Híbrido de Cifra de César - Versão 2.1
+# 🔐 Decriptador Híbrido de Cifra de César - Versão 2.2
 
-Este projeto implementa um **decriptador inteligente** para cifras de César, combinando **validação formal com Gramática Livre de Contexto (GLC)** e **validação semântica com o modelo BERT multilingual**. A versão 2.1 traz melhorias de desempenho, estruturação interna e estabilidade, mantendo a simplicidade em um único arquivo principal.
+Este projeto implementa um **decriptador inteligente** para cifras de César, combinando **validação formal com Gramática Livre de Contexto (GLC)** e **validação semântica com o modelo BERT multilingual**. A versão 2.2 traz melhorias de desempenho, estruturação interna e estabilidade, mantendo a simplicidade em um único arquivo principal.
 
 ---
 
