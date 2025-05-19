@@ -125,7 +125,7 @@ Shift: 3
 | Grafico detalhando shift | ❌ | ❌    | ✅    | ✅     |
 | Funções bem definidas| ❌     | ❌    | ❌    | ✅     |
 | Estrutura modular    | ❌     | ❌    | ❌    | ✅     |
-| Requisitos de RAM    | ~500MB |  ~2 GB | ~2 GB  | ~2 GB  |
+| Requisitos de RAM    | ~500MB |  ~2 GB | ~2 GB  | ~4 GB  |
 
 
 ## 📝 Observações Técnicas
