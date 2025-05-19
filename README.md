@@ -4,23 +4,44 @@ Este projeto implementa um **decriptador inteligente** para cifras de César, co
 
 ---
 
-## 🌟 Novidades na Versão 2.1
+## 🌟 Novidades na Versão 2.2
 
 - ✅ **Melhor estrutura interna** do código (divisão em funções bem definidas)
-- 🔄 **Validação híbrida**: GLC + Dicionário + Modelo BERT
-- ⚖️ **Sistema de pontuação ponderada** com pesos personalizáveis
-- 🖥️ **Interface gráfica com Gradio** mais amigável
+- ✅ **Código modularizado** dividido em pastas e arquivos
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```
-Descriptografia-Python
-├──Caesar/ 
-    ├── app.py # Script principal com interface Gradio 
-    ├── portuguese_words.txt # Lista de palavras válidas em português
-    └── requirements.txt # Dependências do projeto
+Descriptografia-Python/
+├── Caesar/
+│   │
+│   ├── config/                  # Configurações e definições gerais
+│   │   ├── __init__.py
+│   │   ├── grammar.py           # Definição da GLC
+│   │   └── settings.py          # Configurações de pesos e parâmetros
+│   │
+│   ├── core/                    # Núcleo da lógica de descriptografia
+│   │   ├── __init__.py
+│   │   ├── cipher.py            # Geração dos shifts da cifra de César
+│   │   ├── validator.py         # Validações com GLC, dicionário e BERT
+│   │   └── decoder.py           # Lógica principal do decriptador
+│   │
+│   ├── utils/                   # Funções utilitárias
+│   │   ├── __init__.py
+│   │   └── text_utils.py        # Limpeza e manipulação de texto
+│   │
+│   ├── interface/               # Interface gráfica
+│   │   ├── __init__.py
+│   │   └── app.py               # Aplicação com Gradio
+│   │
+│   ├── assets/                  # Recursos auxiliares
+│   │   └── portuguese_words.txt # Lista de palavras em português
+│   │
+│   └── main.py                  # Ponto de entrada do programa
+│
+└── README.md
 ```
 
 
@@ -46,7 +67,7 @@ Descriptografia-Python
    - 📖 **Verifica palavras no dicionário**
    - 🧠 **Calcula coerência com BERT**
 3. Aplica pesos na pontuação:
-   - 30% Estrutura (GLC)
+   - 40% Estrutura (GLC)
    - 30% Léxico (Dicionário)
    - 30% Semântica (BERT)
 4. Retorna a versão mais provável com seu shift e score.
@@ -79,7 +100,7 @@ pip install -r requirements.txt
 
 5. Execute o programa:
 ```
-python app.py
+python main.py
 ```
 
 ## 🧪 Exemplo de Uso
@@ -95,14 +116,15 @@ Shift: 3
 ```
 
 ## 📊 Comparativo de Versões
-| Recurso               | V2.0   | V2.1     |
-| --------------------- | ------ | -------- |
-| GLC (estrutura)       | ✅      | ✅        |
-| Dicionário (léxico)   | ✅      | ✅        |
-| BERT (semântica)      | ✅      | ✅        |
-| Funções bem definidas | ⚠️     | ✅        |
-| Interface Gradio      | ✅      | ✅        |
-| Requisitos de RAM     | \~2 GB | \~2 GB |
+| Recurso              | V1.0   | V2.0   | V2.1   | V2.2   |
+| ---------------------| ------ | ------ | ------ | ------ |
+| Interface Gradio     | ✅     | ✅    | ✅    | ✅     |
+| GLC (estrutura)      | ✅     | ✅    | ✅    | ✅     |
+| Dicionário (léxico)  | ❌     | ✅    | ✅    | ✅     |
+| BERT (semântica)     | ❌     | ✅    | ✅    | ✅     |
+| Funções bem definidas| ❌     | ❌    | ❌    | ✅     |
+| Estrutura modular    | ❌     | ❌    | ❌    | ✅     |
+| Requisitos de RAM    | ~500MB |  ~2 GB | ~2 GB  | ~2 GB  |
 
 
 ## 📝 Observações Técnicas
@@ -114,4 +136,4 @@ Shift: 3
 ## 📄 Licença
 Projeto licenciado sob a [MIT Licens](https://opensource.org/licenses/MIT).
 
-💡 Nota pedagógica: Este projeto une fundamentos acadêmicos (GLC, autômatos) com técnicas modernas de PLN (BERT), proporcionando uma ponte sólida entre teoria e aplicação prática em segurança da informação.
+#### Nota pedagógica: Este projeto une fundamentos acadêmicos (GLC, autômatos) com técnicas modernas de PLN (BERT), proporcionando uma ponte sólida entre teoria e aplicação prática em segurança da informação.
