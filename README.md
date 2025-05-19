@@ -67,7 +67,7 @@ Descriptografia-Python/
    - 📖 **Verifica palavras no dicionário**
    - 🧠 **Calcula coerência com BERT**
 3. Aplica pesos na pontuação:
-   - 40% Estrutura (GLC)
+   - 30% Estrutura (GLC)
    - 30% Léxico (Dicionário)
    - 30% Semântica (BERT)
 4. Retorna a versão mais provável com seu shift e score.
