@@ -122,6 +122,7 @@ Shift: 3
 | GLC (estrutura)      | ✅     | ✅    | ✅    | ✅     |
 | Dicionário (léxico)  | ❌     | ✅    | ✅    | ✅     |
 | BERT (semântica)     | ❌     | ✅    | ✅    | ✅     |
+| Grafico detalhando shift | ❌ | ❌    | ✅    | ✅     |
 | Funções bem definidas| ❌     | ❌    | ❌    | ✅     |
 | Estrutura modular    | ❌     | ❌    | ❌    | ✅     |
 | Requisitos de RAM    | ~500MB |  ~2 GB | ~2 GB  | ~2 GB  |
