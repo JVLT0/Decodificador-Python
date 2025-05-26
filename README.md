@@ -51,29 +51,29 @@ This project implements an **intelligent Caesar cipher decryptor**, combining **
 ```
 Descriptografia-Python/
 ├── Caesar/
-│ ├── config/ # Configurations and general definitions
+│ ├── config/                   # Configurations and general definitions
 │ │ ├── init.py
-│ │ ├── grammar.py # CFG definition
-│ │ └── settings.py # Scoring weights and parameters
+│ │ ├── grammar.py              # CFG definition
+│ │ └── settings.py             # Scoring weights and parameters
 │ │
-│ ├── core/ # Core decryption logic
+│ ├── core/                     # Core decryption logic
 │ │ ├── init.py
-│ │ ├── cipher.py # Caesar shift generation
-│ │ ├── validator.py # Validation (CFG, dictionary, BERT)
-│ │ └── decoder.py # Main decryptor logic
+│ │ ├── cipher.py               # Caesar shift generation
+│ │ ├── validator.py            # Validation (CFG, dictionary, BERT)
+│ │ └── decoder.py              # Main decryptor logic
 │ │
-│ ├── utils/ # Utility functions
+│ ├── utils/                    # Utility functions
 │ │ ├── init.py
-│ │ └── text_utils.py # Text cleaning and formatting
+│ │ └── text_utils.py           # Text cleaning and formatting
 │ │
-│ ├── interface/ # Gradio UI
+│ ├── interface/                # Gradio UI
 │ │ ├── init.py
 │ │ └── app.py
 │ │
 │ ├── assets/
-│ │ └── portuguese_words.txt # Portuguese word list
+│ │ └── portuguese_words.txt    # Portuguese word list
 │ │
-│ └── main.py # Program entry point
+│ └── main.py                   # Program entry point
 │
 └── README.md
 ```
