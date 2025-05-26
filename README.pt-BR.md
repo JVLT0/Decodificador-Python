@@ -14,6 +14,7 @@ Este projeto implementa um **decriptador inteligente** para cifras de César, co
 - 🎯 Pré-seleção dos 3 melhores candidatos usando apenas GLC e Dicionário antes de aplicar o BERT.
 - 🧠 Validação BERT otimizada:
   - Limite de 5 palavras mais longas por frase.
+  - Frases grandes são divididas em pedaços para avaliação incremental.
 - 🪶 Novos pesos na pontuação:
   - 30% GLC, 50% Dicionário, 20% BERT.
 
@@ -21,14 +22,15 @@ Este projeto implementa um **decriptador inteligente** para cifras de César, co
 
 ## 📊 Comparativo de Versões
 
-| Recurso                      | V2.2   | V2.3 |
-|-----------------------------|--------|--------|
-| Processamento paralelo      | ❌     | ✅      |
-| Pré-filtragem com GLC+Dict  | ❌     | ✅      |
-| Palavras limitadas no BERT  | ❌     | ✅ (5)  |
-| Pesos refinados             | 30/30/30 | 30/50/20 |
-| Desempenho                  | Báixo  | Alto   |
-| Memória                     | Alto   | Otimizado |
+| Recurso                      | V2.2   | V2.3         |
+|-----------------------------|--------|--------------|
+| Processamento paralelo      | ❌     | ✅            |
+| Pré-filtragem com GLC+Dict  | ❌     | ✅            |
+| Palavras limitadas no BERT  | ❌     | ✅ (5)        |
+| BERT para frases grandes    | ❌     | ✅ (com divisão) |
+| Pesos refinados             | 30/30/30 | 30/50/20     |
+| Desempenho                  | Baixo  | Alto         |
+| Memória                     | Alto   | Otimizado    |
 
 ---
 
@@ -75,7 +77,6 @@ Descriptografia-Python/
 │   └── main.py                  # Ponto de entrada do programa
 │
 └── README.md
-
 ```
 
 ## ⚙️ Como Funciona
@@ -83,6 +84,7 @@ Descriptografia-Python/
 2. Avaliação preliminar (GLC + Dicionário).
 3. Seleção dos 3 melhores resultados preliminares.
 4. Avaliação final com BERT apenas nesses 3 candidatos.
+   - Se o texto for muito longo, ele é dividido em frases e processado parcialmente.
 5. Resultado exibido com explicação e gráfico dos scores.
 
 ---
@@ -145,11 +147,4 @@ python main.py
 - A gramática pode ser personalizada diretamente no código.
 - Pesos de score estão definidos no próprio app.py.
 - Compatível com CPU (uso de GPU recomendado, se disponível).
-
----
-
-## 📄 Licença
-
-Licenciado sob a [MIT License](https://opensource.org/licenses/MIT).
-
-#### Nota pedagógica: Este projeto une fundamentos acadêmicos (GLC, autômatos) com técnicas modernas de PLN (BERT), proporcionando uma ponte sólida entre teoria e aplicação prática em segurança da informação.
+- Textos longos são avaliados em partes com amostragem aleatória para melhorar a performance do BERT.

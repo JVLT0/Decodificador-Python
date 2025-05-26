@@ -14,6 +14,7 @@ This project implements an **intelligent Caesar cipher decryptor**, combining **
 - 🎯 Pre-selection of the top 3 candidates using only CFG and dictionary before applying BERT.
 - 🧠 Optimized BERT validation:
   - Analyzes only the 5 longest words in each sentence.
+  - Large phrases are divided into pieces for incremental evaluation.
 - 🪶 Updated scoring weights:
   - 30% CFG, 50% Dictionary, 20% BERT.
 
@@ -26,6 +27,7 @@ This project implements an **intelligent Caesar cipher decryptor**, combining **
 | Parallel processing              | ❌       | ✅        |
 | Pre-filtering with CFG + Dict    | ❌       | ✅        |
 | Word limit in BERT validation    | ❌       | ✅ (5)    |
+| Bert for Big Phrases | ❌ | ✅ (with division)         |
 | Refined scoring weights          | 30/30/30 | 30/50/20 |
 | Overall performance              | Low      | High     |
 | Memory usage                     | High     | Optimized|
@@ -84,6 +86,7 @@ Descriptografia-Python/
 2. Performs preliminary evaluation using CFG and dictionary.
 3. Selects the top 3 preliminary candidates.
 4. Applies BERT validation only to those top 3.
+   - If the text is too long, it is divided into sentences and partially processed.
 5. Returns the most likely decryption with explanation and score chart.
 
 ---
@@ -152,10 +155,3 @@ python main.py
 - Scoring weights are defined in `app.py`.
 - Works on CPU (GPU recommended for better performance).
 
----
-
-## 📄 License
-
-Licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
-#### Educational Note: This project bridges academic foundations (CFGs, automata) with modern NLP techniques (BERT), creating a strong link between theory and real-world application in cybersecurity.

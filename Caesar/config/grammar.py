@@ -5,6 +5,7 @@ class SentenceValidator(Transformer):
         return all(items)
 
 def setup_glc():
+    # Define uma gramática simples para validar sentenças
     grammar = """
     start: (word | number | punctuation | symbol | SPACE)+
     word: LETTER+

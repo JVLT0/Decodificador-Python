@@ -1,6 +1,5 @@
 import re
 import torch
-from difflib import SequenceMatcher
 from utils.text_utils import normalize_text
 
 class Validator:
@@ -19,43 +18,24 @@ class Validator:
 
     def validate_with_dict(self, sentence):
         words = re.findall(r'\b\w+\b', normalize_text(sentence.lower()))
-        return sum(word in self.dictionary for word in words) / max(len(words), 1)
+        if not words:
+            return 0.0
+        valid_words = sum(word in self.dictionary for word in words)
+        return valid_words / len(words)
 
-    def validate_with_bert(self, sentence, max_words=5):
-        words = sentence.split()
-        total_score = 0
-        valid_words = 0
-
-        words_to_check = sorted([w for w in words if len(w) >= 3], key=len, reverse=True)[:max_words]
-
-        for word in words_to_check:
-            masked_words = words.copy()
+    def validate_with_bert(self, text, max_words=5):
+        # Avaliação semântica com BERT usando até 5 palavras mascaradas
+        words = [w for w in text.split() if len(w) >= 3][:max_words]
+        correct = 0
+        for word in words:
             try:
-                i = words.index(word)
-                masked_words[i] = self.tokenizer.mask_token
-                masked_sentence = " ".join(masked_words)
-
-                inputs = self.tokenizer(masked_sentence, return_tensors="pt")
-                mask_index = torch.where(inputs.input_ids == self.tokenizer.mask_token_id)[1]
-
+                masked = text.replace(word, self.tokenizer.mask_token, 1)
+                inputs = self.tokenizer(masked, return_tensors="pt", truncation=True, max_length=512)
                 with torch.no_grad():
                     outputs = self.model(**inputs)
-                logits = outputs.logits
-
-                predicted_token_id = torch.argmax(logits[0, mask_index, :], dim=-1).item()
-                predicted_token = self.tokenizer.decode([predicted_token_id]).strip()
-
-                if normalize_text(predicted_token.lower()) == normalize_text(word.lower()):
-                    total_score += 1
-                valid_words += 1
+                pred = self.tokenizer.decode(outputs.logits[0, torch.where(inputs.input_ids == self.tokenizer.mask_token_id)[1]].argmax(-1)).strip()
+                if normalize_text(pred.lower()) == normalize_text(word.lower()):
+                    correct += 1
             except:
                 continue
-
-        return total_score / valid_words if valid_words > 0 else 0
-
-    def hybrid_validation(self, sentence, max_words=5):
-        glc_score = 1 if self.validate_with_glc(sentence) else 0
-        dict_score = self.validate_with_dict(sentence)
-        bert_score = self.validate_with_bert(sentence, max_words=max_words)
-        final_score = (glc_score * 0.3) + (dict_score * 0.3) + (bert_score * 0.3)
-        return final_score, glc_score, dict_score, bert_score
+        return correct / len(words) if words else 0.0
